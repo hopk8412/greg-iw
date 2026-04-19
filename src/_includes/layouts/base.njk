@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if title %}{{ title }} — {% endif %}{{ site.title }}</title>
+
+    {# IndieAuth + Micropub discovery #}
+    <link rel="authorization_endpoint" href="{{ site.endpoints.authorization }}">
+    <link rel="token_endpoint" href="{{ site.endpoints.token }}">
+    <link rel="micropub" href="{{ site.endpoints.micropub }}">
+
+    {# rel=me for IndieAuth identity verification (body anchors echo these) #}
+    {% for link in site.relMe %}
+      <link rel="me" href="{{ link.href }}">
+    {% endfor %}
+
+    <link rel="stylesheet" href="/assets/css/theme.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-header__brand" href="/">{{ site.title }}</a>
+        {% include "partials/nav.njk" %}
+      </div>
+    </header>
+
+    <main class="site-main">
+      {{ content | safe }}
+    </main>
+
+    {% include "partials/footer.njk" %}
+  </body>
+</html>

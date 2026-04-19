@@ -1,0 +1,10 @@
+<nav class="site-nav" aria-label="Primary">
+  <ul class="site-nav__list">
+    {% for item in site.nav %}
+      <li class="site-nav__item">
+        <a class="site-nav__link{% if page.url == item.href %} is-active{% endif %}"
+           href="{{ item.href }}">{{ item.label }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

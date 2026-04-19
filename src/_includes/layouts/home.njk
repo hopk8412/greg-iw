@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+---
+<div class="home">
+  <aside class="home__sidebar">
+    <section class="panel">
+      <h2 class="panel__title">About</h2>
+      {% include "partials/h-card.njk" %}
+    </section>
+
+    <section class="panel">
+      <h2 class="panel__title">Top 8</h2>
+      <ol class="top8">
+        <li>Placeholder</li>
+        <li>Placeholder</li>
+        <li>Placeholder</li>
+        <li>Placeholder</li>
+        <li>Placeholder</li>
+        <li>Placeholder</li>
+        <li>Placeholder</li>
+        <li>Placeholder</li>
+      </ol>
+    </section>
+  </aside>
+
+  <section class="home__main">
+    <section class="panel h-feed">
+      <h2 class="panel__title">Latest posts</h2>
+      {% if collections.posts.length %}
+        <ul class="post-list">
+          {% for post in collections.posts %}
+            {% if loop.index0 < 5 %}
+              <li class="h-entry">
+                <a class="p-name u-url" href="{{ post.url }}">{{ post.data.title }}</a>
+                <time class="dt-published" datetime="{{ post.date | isoDate }}">
+                  {{ post.date | readableDate }}
+                </time>
+                <a class="p-author h-card" rel="author" href="{{ site.author.url }}" hidden>{{ site.author.name }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No posts yet.</p>
+      {% endif %}
+    </section>
+  </section>
+</div>

@@ -1,0 +1,38 @@
+{# h-card partial
+   Usage:
+     {% include "partials/h-card.njk" %}                 → compact
+     {% set hcardVariant = "full" %}{% include "partials/h-card.njk" %}
+#}
+<div class="h-card h-card--{{ hcardVariant or 'compact' }}">
+  {% if site.author.photo %}
+    <img class="h-card__photo u-photo"
+         src="{{ site.author.photo }}"
+         alt="{{ site.author.name }}">
+  {% endif %}
+
+  <div class="h-card__body">
+    <a class="h-card__name p-name u-url" rel="me" href="{{ site.author.url }}">
+      {{ site.author.name }}
+    </a>
+
+    {% if site.author.note %}
+      <p class="h-card__note p-note">{{ site.author.note }}</p>
+    {% endif %}
+
+    {% if hcardVariant == "full" %}
+      {% if site.author.email %}
+        <p class="h-card__email">
+          <a class="u-email" rel="me" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+        </p>
+      {% endif %}
+
+      {% if site.relMe.length %}
+        <ul class="h-card__rel-me">
+          {% for link in site.relMe %}
+            <li><a rel="me" href="{{ link.href }}">{{ link.label }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>

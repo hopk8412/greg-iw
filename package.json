@@ -1,0 +1,21 @@
+{
+  "name": "greg-iw",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal IndieWeb site",
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "clean": "rimraf _site"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hopk8412/greg-iw.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.5"
+  }
+}

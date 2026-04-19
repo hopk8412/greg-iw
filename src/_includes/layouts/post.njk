@@ -1,0 +1,32 @@
+---
+layout: layouts/base.njk
+---
+<article class="post panel h-entry">
+  <header class="post__header">
+    <h1 class="post__title p-name">{{ title }}</h1>
+    <time class="post__date dt-published" datetime="{{ page.date | isoDate }}">
+      {{ page.date | readableDate }}
+    </time>
+    <a class="post__permalink u-url" href="{{ page.url }}" hidden>Permalink</a>
+    <a class="post__author p-author h-card" rel="author" href="{{ site.author.url }}" hidden>{{ site.author.name }}</a>
+  </header>
+
+  {% if summary %}
+    <p class="post__summary p-summary">{{ summary }}</p>
+  {% endif %}
+
+  <div class="post__body e-content">
+    {{ content | safe }}
+  </div>
+
+  {% if syndication and syndication.length %}
+    <footer class="post__footer">
+      <p class="post__syndication">Also on:</p>
+      <ul class="syndication">
+        {% for url in syndication %}
+          <li><a class="u-syndication" href="{{ url }}">{{ url }}</a></li>
+        {% endfor %}
+      </ul>
+    </footer>
+  {% endif %}
+</article>
